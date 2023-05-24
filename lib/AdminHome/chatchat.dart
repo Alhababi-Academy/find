@@ -157,19 +157,19 @@ class _chatchat extends State<chatchat> {
                                       ),
                                     ],
                                   ),
-                                  snapshot.data!.docs[index]['msg'].length > 20
-                                      ? ElevatedButton(
-                                          onPressed: () {
-                                            if (snapshot.data!
-                                                    .docs[index]['msg'].length >
-                                                20) {
-                                              downloadImage(snapshot
-                                                  .data!.docs[index]['msg']);
-                                            }
-                                          },
-                                          child: const Text("Download Image"),
-                                        )
-                                      : const Text(""),
+                                  // snapshot.data!.docs[index]['msg'].length > 20
+                                  //     ? ElevatedButton(
+                                  //         onPressed: () {
+                                  //           if (snapshot.data!
+                                  //                   .docs[index]['msg'].length >
+                                  //               20) {
+                                  //             downloadImage(snapshot
+                                  //                 .data!.docs[index]['msg']);
+                                  //           }
+                                  //         },
+                                  //         child: const Text("Download Image"),
+                                  //       )
+                                  //     : const Text(""),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -223,24 +223,5 @@ class _chatchat extends State<chatchat> {
         }
       },
     );
-  }
-
-  downloadImage(url) async {
-    try {
-      var imageId = await ImageDownloader.downloadImage(url).then((value) {
-        if (value != null) {
-          showDialog(
-            context: context,
-            builder: (_) =>
-                const errorDialog(message: "Image Downloaded Sussfully"),
-          );
-        }
-      });
-      if (imageId == null) {
-        return;
-      }
-    } on PlatformException catch (error) {
-      print("This is the Error ${error}");
-    }
   }
 }
